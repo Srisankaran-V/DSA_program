@@ -1,0 +1,193 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<stdlib.h>
+
+struct doublenode
+{
+    struct doublenode * prev;
+    int data;
+    struct doublenode * next;
+}*head,*tail;
+typedef struct doublenode node;
+node*create_double_linkedlist(int);
+void insert_at_start(int);
+void insert_at_end(int);
+void insert_at_specific(int,int);
+void insert_at_beforenode(int,int);
+void insert_at_afternode(int,int);
+void delete_at_start();
+void delete_at_end();
+void display();
+
+int main()
+{
+    insert_at_start(6);
+    insert_at_start(5);
+    insert_at_end(111);
+    insert_at_end(8);
+    
+    insert_at_specific(3,2);
+    insert_at_beforenode(9,2);
+    insert_at_afternode(10,3);
+    
+    
+    
+    display();
+}
+node*create_double_linkedlist(int item)
+{
+    node* newnode = (node*)malloc(sizeof(node));
+    newnode->data = item;
+    newnode->prev = NULL;
+    newnode->next = NULL;
+    return newnode;
+}
+
+void insert_at_start(int value)
+{
+    node* newnode=create_double_linkedlist(value);
+    if (head==NULL)
+    {
+        head=newnode;
+        tail=newnode;
+        return;
+    }
+    head->prev=newnode;
+    newnode->next=head;
+    head=newnode;
+}
+
+void display()
+{
+    printf("the elements are \n");\
+    node*temp=head;
+    while(temp->next!=NULL)
+    {
+        printf("%d\t",temp->data);
+        temp=temp->next;
+    }
+   
+    
+    
+}
+
+void insert_at_end(int value)
+{
+    node*newnode=create_double_linkedlist(value);
+    if (head==NULL)
+    {
+        head=newnode;
+        tail=newnode;
+        return;
+    }
+    node*temp=tail;
+    temp->next=newnode;
+    newnode->prev=temp;
+    tail=newnode;
+   
+
+}
+void insert_at_specific(int value,int pos)
+{
+    node*newnode=create_double_linkedlist(value);
+    if (head==NULL)
+    {
+        printf("list is empty\n");
+        head=tail=newnode;
+        return;
+    }
+   
+    node*temp=head;
+    for(int i=1;i<pos-1;i++)
+    {
+        temp=temp->next;
+
+    }
+    newnode->next=temp->next;
+    newnode->prev=temp;
+    temp->next=newnode;
+    newnode->next->prev=newnode;
+
+}
+
+void insert_at_beforenode(int value, int pos)
+{
+    node*newnode=create_double_linkedlist(value);
+    if (pos==2)
+    {
+        insert_at_start(value);
+        return;
+    }
+    if(pos==1)
+    {
+        printf("enter correct position to inserted\n");
+        return;
+    }
+    node*temp=head;
+    for(int i=1;i<pos-2;i++)
+    {
+        temp=temp->next;
+    }
+    newnode->next=temp->next;
+    newnode->prev=temp;
+    temp->next=newnode;
+    newnode->next->prev=newnode;    
+
+}
+void insert_at_afternode(int value,int pos)
+{
+    node*newnode=create_double_linkedlist(value);
+    node*temp=head;
+
+    for (int i=1;i<pos;i++)
+    {
+        temp=temp->next;
+    }
+    if(temp->next!=NULL)
+    {
+        newnode->next=temp->next;
+        newnode->prev=temp;
+        temp->next=newnode;
+        newnode->next->prev=newnode;
+        return;
+    }
+    if(temp->next==NULL)
+    {
+        insert_at_end(value);
+        return;
+    }
+
+
+
+}
+void delete_at_start()
+{
+    
+    if(head==NULL)
+    {
+        printf("list is empty to delete element\n");
+        return;
+        
+    }
+    node*temp=head;
+    head=head->next;
+    free(temp);
+
+}
+
+void delete_at_end()
+{
+    if(head==NULL)
+    {
+        printf("list is empty to delete element\n");
+        return;        
+    }
+    node*temp=tail;
+    tail=tail->prev;
+    free(temp);
+}
+
+
+
+
+

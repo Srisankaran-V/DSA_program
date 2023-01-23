@@ -1,31 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@Srisankaran-V 
-shiyaamsunder
-/
-dsalgos
-Public
-Fork your own copy of shiyaamsunder/dsalgos
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-dsalgos/queue/circular_queuel.c
-@shiyaamsunder
-shiyaamsunder update search function in cirucular queue
-Latest commit fce7588 last month
- History
- 1 contributor
-176 lines (147 sloc)  2.76 KB
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -203,18 +175,3 @@ void search(int data){
         printf("Element not found\n");
     }
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-dsalgos/circular_queuel.c at main · shiyaamsunder/dsalgos
